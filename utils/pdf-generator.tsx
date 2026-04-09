@@ -9,15 +9,51 @@ export const generatePDF = async (filename: string) => {
     return;
   }
 
+  // Create off-screen container
+  const container = document.createElement("div");
+  container.style.position = "fixed";
+  container.style.left = "-9999px";
+  container.style.top = "0";
+
+  // Clone invoice
+  const clone = element.cloneNode(true) as HTMLElement;
+
+  const targetWidth = 794; // A4 width in px
+
+  // ===== PDF STYLING FIXES (YOUR REQUEST) =====
+  clone.style.width = `${targetWidth}px`;
+  clone.style.maxWidth = "none";
+  clone.style.height = "auto";
+  clone.style.margin = "0";
+
+  // 🔥 INCREASED PADDING (change 24px → 12px if you want px-3 feel)
+  clone.style.padding = "24px";
+  clone.style.boxSizing = "border-box";
+
+  // Better readability in PDF
+  clone.style.lineHeight = "1.4";
+  clone.style.fontSize = "14px";
+
+  container.appendChild(clone);
+  document.body.appendChild(container);
+
   try {
-    // 1. Capture element exactly as rendered (no resizing)
-    const imgData = await toPng(element, {
-      pixelRatio: 2,
+    const targetHeight = clone.offsetHeight;
+
+    // Convert to image
+    const imgData = await toPng(clone, {
+      pixelRatio: 3, // 🔥 sharper PDF
       backgroundColor: "#ffffff",
-      cacheBust: true,
+      width: targetWidth,
+      height: targetHeight,
+      style: {
+        width: `${targetWidth}px`,
+        maxWidth: "none",
+        margin: "0",
+      },
     });
 
-    // 2. Load image
+    // Load image
     const img = new Image();
     img.src = imgData;
 
@@ -26,7 +62,7 @@ export const generatePDF = async (filename: string) => {
       img.onerror = reject;
     });
 
-    // 3. Create PDF (still A4 page, but content adapts)
+    // Create PDF
     const pdf = new jsPDF({
       orientation: "portrait",
       unit: "mm",
@@ -34,8 +70,6 @@ export const generatePDF = async (filename: string) => {
     });
 
     const pdfWidth = pdf.internal.pageSize.getWidth();
-
-    // Maintain aspect ratio of captured image
     const pdfHeight = (img.height * pdfWidth) / img.width;
 
     pdf.addImage(imgData, "PNG", 0, 0, pdfWidth, pdfHeight);
@@ -43,5 +77,9 @@ export const generatePDF = async (filename: string) => {
     pdf.save(`${filename}.pdf`);
   } catch (error) {
     console.error("Error generating PDF:", error);
+  } finally {
+    if (document.body.contains(container)) {
+      document.body.removeChild(container);
+    }
   }
 };

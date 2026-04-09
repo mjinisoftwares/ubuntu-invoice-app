@@ -57,7 +57,7 @@ export default function InvoicePreview({ onBack }: InvoicePreviewProps) {
               <img
                 src="/ubuntu.webp"
                 alt="logo"
-                className="h-16 sm:h-20 lg:h-28 w-auto object-contain"
+                className="h-16 sm:h-20 lg:h-32 w-auto object-contain"
               />
 
               <div className="text-left sm:text-right">

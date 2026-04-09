@@ -21,7 +21,7 @@ export default function QuotationPreview({ onBack }: QuotationPreviewProps) {
   };
 
   return (
-    <div className="min-h-screen bg-gray-100 px-4 py-6 sm:px-6 lg:px-12">
+    <div className="min-h-screen bg-gray-100 px-4 py-6 lg:px-16">
       <div className="max-w-4xl mx-auto">
         {/* Header */}
         <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4 mb-6">
@@ -57,7 +57,7 @@ export default function QuotationPreview({ onBack }: QuotationPreviewProps) {
               <img
                 src="/ubuntu.webp"
                 alt="logo"
-                className="h-16 sm:h-20 lg:h-28 w-auto object-contain"
+                className="h-20 lg:h-32 w-auto object-contain"
               />
 
               <div className="text-left sm:text-right">
