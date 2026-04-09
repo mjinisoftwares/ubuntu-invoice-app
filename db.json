@@ -27,7 +27,89 @@
       "subtotal": 200000,
       "taxAmount": 20000,
       "total": 220000
+    },
+    {
+      "invoiceNumber": "INV-1775718780169",
+      "date": "2026-04-09",
+      "fromName": "victor",
+      "fromEmail": "",
+      "toName": "ubuntu",
+      "toEmail": "",
+      "items": [
+        {
+          "id": "1",
+          "description": "web",
+          "quantity": 1,
+          "rate": 34999.99,
+          "amount": 34999.99
+        }
+      ],
+      "taxRate": 10,
+      "subtotal": 34999.99,
+      "taxAmount": 3499.999,
+      "total": 38499.989
+    },
+    {
+      "invoiceNumber": "INV-1775719238920",
+      "date": "2026-04-09",
+      "fromName": "",
+      "fromEmail": "",
+      "toName": "",
+      "toEmail": "",
+      "items": [
+        {
+          "id": "1",
+          "description": "",
+          "quantity": 1,
+          "rate": 0,
+          "amount": 0
+        }
+      ],
+      "taxRate": 10,
+      "subtotal": 0,
+      "taxAmount": 0,
+      "total": 0
+    },
+    {
+      "invoiceNumber": "INV-1775720024095",
+      "date": "2026-04-09",
+      "fromName": "Vick Maina",
+      "fromEmail": "",
+      "toName": "Ubuntu",
+      "toEmail": "",
+      "items": [
+        {
+          "id": "1",
+          "description": "",
+          "quantity": 1,
+          "rate": 0,
+          "amount": 0
+        }
+      ],
+      "taxRate": 10,
+      "subtotal": 0,
+      "taxAmount": 0,
+      "total": 0
     }
   ],
-  "quotations": []
+  "quotations": [
+    {
+      "quotationNumber": "QT-1775720024134",
+      "date": "2026-04-09",
+      "fromName": "Victor",
+      "fromEmail": "",
+      "toName": "Ubuntu",
+      "toEmail": "",
+      "items": [
+        {
+          "id": "1",
+          "date": "",
+          "pickupPaid": "",
+          "dropoffReturnTrip": "",
+          "amount": 0
+        }
+      ],
+      "total": 0
+    }
+  ]
 }

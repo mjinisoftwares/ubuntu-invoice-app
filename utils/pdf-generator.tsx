@@ -9,14 +9,49 @@ export const generatePDF = async (filename: string) => {
     return;
   }
 
+  // 1. Create a wrapper to hold our clone off-screen
+  const container = document.createElement("div");
+  container.style.position = "fixed"; // Prevents affecting scroll size
+  container.style.left = "-9999px"; // Safely out of sight
+  container.style.top = "0";
+  
+  // 2. Clone the element and enforce desktop layout proportions
+  const clone = element.cloneNode(true) as HTMLElement;
+  const targetWidth = 794; // Standard A4 desktop render width
+
+  clone.style.width = `${targetWidth}px`;
+  clone.style.maxWidth = "none";
+  clone.style.height = "auto";
+  clone.style.margin = "0"; // Strip mx-auto
+  
+  container.appendChild(clone);
+  document.body.appendChild(container);
+
   try {
-    // Generate a screenshot using html-to-image which properly supports modern CSS (like lab colors)
-    const imgData = await toPng(element, {
-      pixelRatio: 2, // Higher pixel ratio for better resolution
-      backgroundColor: "#ffffff", // Ensure solid white background 
+    // Retrieve correct height after forcing layout width
+    const targetHeight = clone.offsetHeight;
+
+    // 3. Generate a screenshot *directly* from the desktop clone instead of the responsive element
+    const imgData = await toPng(clone, {
+      pixelRatio: 2, 
+      backgroundColor: "#ffffff",
+      width: targetWidth, 
+      height: targetHeight,
+      style: {
+        width: `${targetWidth}px`,
+        maxWidth: "none",
+        margin: "0",
+      }
     });
 
-    // A4 dimensions in mm
+    // 4. Transform image into PDF proportions
+    const img = new Image();
+    img.src = imgData;
+    await new Promise((resolve, reject) => {
+      img.onload = resolve;
+      img.onerror = reject;
+    });
+
     const pdf = new jsPDF({
       orientation: "portrait",
       unit: "mm",
@@ -24,15 +59,18 @@ export const generatePDF = async (filename: string) => {
     });
 
     const pdfWidth = pdf.internal.pageSize.getWidth();
-    // Calculate the height proportionally to maintain aspect ratio
-    const pdfHeight = (element.offsetHeight * pdfWidth) / element.offsetWidth;
+    const pdfHeight = (img.height * pdfWidth) / img.width;
 
-    // Add the generated image to the PDF
     pdf.addImage(imgData, "PNG", 0, 0, pdfWidth, pdfHeight);
     
     // Save the downloaded file
     pdf.save(`${filename}.pdf`);
   } catch (error) {
     console.error("Error generating PDF:", error);
+  } finally {
+    // Always clean up the phantom DOM element
+    if (document.body.contains(container)) {
+      document.body.removeChild(container);
+    }
   }
 };
