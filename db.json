@@ -90,6 +90,27 @@
       "subtotal": 0,
       "taxAmount": 0,
       "total": 0
+    },
+    {
+      "invoiceNumber": "INV-1775721352602",
+      "date": "2026-04-09",
+      "fromName": "",
+      "fromEmail": "",
+      "toName": "",
+      "toEmail": "",
+      "items": [
+        {
+          "id": "1",
+          "description": "",
+          "quantity": 1,
+          "rate": 0,
+          "amount": 0
+        }
+      ],
+      "taxRate": 10,
+      "subtotal": 0,
+      "taxAmount": 0,
+      "total": 0
     }
   ],
   "quotations": [
