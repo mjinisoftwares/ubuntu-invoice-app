@@ -47,18 +47,18 @@ export default function TaxAndTotals() {
         <div className="space-y-2">
           <div className="flex justify-between">
             <span>Subtotal:</span>
-            <span>${invoice.subtotal.toFixed(2)}</span>
+            <span>KES {invoice.subtotal.toFixed(2)}</span>
           </div>
           <div className="flex justify-between">
             <span>
               Tax ({typeof invoice.taxRate === "number" ? invoice.taxRate : 0}
               %):
             </span>
-            <span>${invoice.taxAmount.toFixed(2)}</span>
+            <span>KES {invoice.taxAmount.toFixed(2)}</span>
           </div>
           <div className="flex justify-between font-bold text-lg border-t pt-2">
             <span>Total:</span>
-            <span>${invoice.total.toFixed(2)}</span>
+            <span>KES {invoice.total.toFixed(2)}</span>
           </div>
         </div>
       </CardContent>

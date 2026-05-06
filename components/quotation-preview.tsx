@@ -91,7 +91,7 @@ export default function QuotationPreview({ onBack }: QuotationPreviewProps) {
                 </div>
                 <div className="flex items-center gap-2 mb-1 text-sm">
                   <Phone className="w-4 h-4" />
-                  +254 728 798 89
+                 +254 728 798589
                 </div>
                 <div className="flex items-center gap-2 mb-1 text-sm">
                   <Globe className="w-4 h-4" />
@@ -118,7 +118,7 @@ export default function QuotationPreview({ onBack }: QuotationPreviewProps) {
                 <thead className="bg-gray-100">
                   <tr>
                     <th className="text-left py-3 px-4 text-sm">Date</th>
-                    <th className="text-center py-3 px-4 text-sm">Pickup Paid</th>
+                    <th className="text-center py-3 px-4 text-sm">Pickup Point</th>
                     <th className="text-center py-3 px-4 text-sm">Dropoff / Return</th>
                     <th className="text-right py-3 px-4 text-sm">Amount</th>
                   </tr>
@@ -160,14 +160,49 @@ export default function QuotationPreview({ onBack }: QuotationPreviewProps) {
                 Payment Instructions
               </h3>
               <p className="text-gray-600 font-bold text-sm sm:text-base">
-                PAY TO TILL NUMBER: 454370
+                PAY TO TILL NUMBER: 522533, ACCOUNT: 8077526
               </p>
-              <p className="text-gray-600 font-bold text-sm sm:text-base">
-                TRANSFER ARENA
-              </p>
+             
             </div>
 
             {/* Footer */}
+            <div className="space-y-2 text-sm text-gray-700">
+  <h3 className="font-semibold underline">Terms and Conditions</h3>
+
+  <ul className="list-disc space-y-1 pl-5">
+    <li>This quotation is valid for 7 days from the date of issue.</li>
+
+    <li>
+      Payment terms: A 50% booking fee is required, with the remaining balance
+      payable before boarding. Services will only be rendered upon full payment.
+    </li>
+
+    <li>
+      Accepted payment methods include cash, cheque, and bank transfer payable
+      to:
+      <span className="font-medium">
+        {' '}
+        Benard Chege – KCB Bank Account No. 1221884697
+      </span>
+      {' '}or{' '}
+      <span className="font-medium">
+        MPESA: +254 728 798 589
+      </span>
+      .
+    </li>
+
+    <li>
+      Payment confirmation should be sent via SMS, WhatsApp, or email to{' '}
+      <a
+        href="mailto:info@ubuntulogistics.co.ke"
+        className="text-blue-600 underline"
+      >
+        info@ubuntulogistics.co.ke
+      </a>
+      .
+    </li>
+  </ul>
+</div>
             <div className="mt-10 flex flex-row justify-between items-center gap-6">
               <div className="relative">
                 <img
