@@ -132,6 +132,27 @@
       "subtotal": 0,
       "taxAmount": 0,
       "total": 0
+    },
+    {
+      "invoiceNumber": "INV-1778128120222",
+      "date": "2026-05-07",
+      "fromName": "Victor",
+      "fromEmail": "mjinisoftwares@gmail.com",
+      "toName": "Ubuntu",
+      "toEmail": "mjinisoftwares@gmail.com",
+      "items": [
+        {
+          "id": "1",
+          "description": "item1",
+          "quantity": 1,
+          "rate": 20000,
+          "amount": 20000
+        }
+      ],
+      "taxRate": 10,
+      "subtotal": 20000,
+      "taxAmount": 2000,
+      "total": 22000
     }
   ],
   "quotations": [
